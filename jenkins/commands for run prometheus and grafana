@@ -1,0 +1,9 @@
+echo "-----BEGIN RSA PRIVATE KEY-----
+***
+-----END RSA PRIVATE KEY-----" > ssh-key1
+
+chmod 600 ssh-key1
+ssh -o StrictHostKeyChecking=no -i ssh-key1 pavlo@10.156.0.24 'sudo docker stop prometheus grafana'
+ssh -o StrictHostKeyChecking=no -i ssh-key1 pavlo@10.156.0.24 'sudo docker rm prometheus grafana'
+ssh -o StrictHostKeyChecking=no -i ssh-key1 pavlo@10.156.0.24 'sudo docker run -d --name prometheus -p 9090:9090 prom/prometheus'
+ssh -o StrictHostKeyChecking=no -i ssh-key1 pavlo@10.156.0.24 'sudo docker run -d --name grafana -p 3000:3000 grafana/grafana'
