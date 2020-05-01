@@ -1,0 +1,31 @@
+#update packages
+sudo apt update
+
+#install openjdk
+sudo apt install default-jdk
+
+#create tomcat usr
+sudo useradd -r -m -U -d /opt/tomcat -s /bin/false tomcat
+
+#install tomcat:
+#download tomcat archive
+wget http://www-eu.apache.org/dist/tomcat/tomcat-9/v9.0.27/bin/apache-tomcat-9.0.27.tar.gz -P /tmp
+
+#extract archive
+sudo tar xf /tmp/apache-tomcat-9*.tar.gz -C /opt/tomcat
+
+#add acess for user tomcat
+sudo chown -RH tomcat: /opt/tomcat/latest
+sudo sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
+
+#create and start a systemd unit file
+sudo nano /etc/systemd/system/tomcat.service
+sudo systemctl daemon-reload
+sudo systemctl start tomcat
+sudo systemctl status tomcat
+sudo systemctl enable tomcat
+
+#adjust the firewall
+sudo ufw allow 8080/tcp
+
+#open browser and visit your ip-address on port 8080
