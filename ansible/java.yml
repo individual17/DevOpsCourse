@@ -1,0 +1,11 @@
+---
+- name: install java
+  hosts: all
+  become: yes
+
+- hosts: all
+  roles:
+                                    - role: ansiblebit.oracle-java
+                   oracle_java_deb_package: 'oracle-java11-installer'
+       oracle_java_debconf_package_default: 'oracle-java11-set-default'
+                          oracle_java_home: "/usr/lib/jvm/java-11-oracle"
