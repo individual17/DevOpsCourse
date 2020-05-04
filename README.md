@@ -1,2 +1,2 @@
 # DevOps Crash Course
-All tasks from crashcourses
+My tasks from crashcourses
